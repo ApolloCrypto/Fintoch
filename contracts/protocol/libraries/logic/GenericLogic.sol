@@ -115,7 +115,7 @@ library GenericLogic {
         vars.ltv,
         vars.liquidationThreshold,
         ,
-        vars.decimals,
+      vars.decimals,
         ,
         vars.eModeAssetCategory
       ) = currentReserve.configuration.getParams();

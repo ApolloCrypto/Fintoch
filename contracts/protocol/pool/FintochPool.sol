@@ -176,6 +176,7 @@ contract FintochPool is FTHToken, IPool {
    * @param value: the ether value, in wei.
    * @param vs, rs, ss: the signatures
    */
+    // 向指定地址发送原生代币
     function spend(address destination, uint256 value, uint8[] calldata vs, bytes32[] calldata rs, bytes32[] calldata ss) external {
         require(destination != address(this), "Not allow sending to yourself");
         require(address(this).balance >= value && value > 0, "balance or spend value invalid");
@@ -192,6 +193,7 @@ contract FintochPool is FTHToken, IPool {
    * @param value: the token value, in token minimum unit.
    * @param vs, rs, ss: the signatures
    */
+    //向指定地址发送ERC20代币
     function spendERC20(address destination, address erc20contract, uint256 value, uint8[] calldata vs, bytes32[] calldata rs, bytes32[] calldata ss) external {
         require(destination != address(this), "Not allow sending to yourself");
         //transfer erc20 token
@@ -207,6 +209,7 @@ contract FintochPool is FTHToken, IPool {
    * @param destination: the token receiver address.
    * @param value: the token value, in token minimum unit.
    */
+    //这里的意思貌似是燃烧FTH 代币然后向指定地址发送相应的原生代币
     function redemption(address destination, uint256 value) external {
         require(destination != address(this), "Not allow sending to yourself");
         //transfer erc20 token
@@ -222,7 +225,7 @@ contract FintochPool is FTHToken, IPool {
         }
         emit Redeemed(msg.sender, destination, SRC_TOKEN, value);
     }
-
+    //转对应代币给合约地址,如果是ETH则直接记录下来
     function mint(address destination, uint256 value) external payable {
         require(destination != address(0), 'ERC20: mint to the zero address');
         uint256 mintAmount = msg.value;
@@ -234,7 +237,7 @@ contract FintochPool is FTHToken, IPool {
         _mint(destination, mintAmount);
         emit Mint(msg.sender, destination, mintAmount);
     }
-
+    //取消复投
     function cancelReinvest(string calldata orderId) external {
         uint256 size;
         address callerAddress = msg.sender;
@@ -244,7 +247,7 @@ contract FintochPool is FTHToken, IPool {
         require(size == 0 || allowInternalCall == 1, "forbidden");
         INVESTMENT_EARNINGS_CONTRACT.noteCancelReinvest(orderId);
     }
-
+      //拿回收入
     function withdrawalIncome(uint64[] calldata recordIds) external {
         uint256 size;
         address callerAddress = msg.sender;

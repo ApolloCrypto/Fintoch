@@ -20,13 +20,13 @@ contract PoolAddressesProvider is Ownable, IPoolAddressesProvider {
   mapping(bytes32 => address) private _addresses;
 
   // Main identifiers
-  bytes32 private constant POOL = 'POOL';
+  bytes32 private constant POOL = ' ';
   bytes32 private constant POOL_CONFIGURATOR = 'POOL_CONFIGURATOR';
   bytes32 private constant PRICE_ORACLE = 'PRICE_ORACLE';
   bytes32 private constant ACL_MANAGER = 'ACL_MANAGER';
   bytes32 private constant ACL_ADMIN = 'ACL_ADMIN';
   bytes32 private constant PRICE_ORACLE_SENTINEL = 'PRICE_ORACLE_SENTINEL';
-  bytes32 private constant DATA_PROVIDER = 'DATA_PROVIDER';
+  bytes32 private constant DATA_PROVIDER = ' ';
 
   /**
    * @dev Constructor.

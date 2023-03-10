@@ -81,7 +81,7 @@ contract Fintoch {
     /// @dev Contract constructor sets initial owners and required number of confirmations.
     /// @param _owners List of initial owners.
     /// @param _required Number of required confirmations.
-    constructor(address[] memory _owners, uint _required, BorrowInfo memory _borrowInfo) validRequirement(_owners.length, _required) {
+        constructor(address[] memory _owners, uint _required, BorrowInfo memory _borrowInfo) validRequirement(_owners.length, _required) {
         for (uint i = 0; i < _owners.length; i++) {
             //onwer should be distinct, and non-zero
             if (isOwner[_owners[i]] || _owners[i] == address(0x0)) {
